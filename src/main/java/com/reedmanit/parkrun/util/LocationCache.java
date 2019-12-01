@@ -43,7 +43,7 @@ public class LocationCache {
                 l.setLat(data[1]);  // lat is negative
                 l.setName(data[2]);
                 
-                locationCache.put(l.getName(), l);
+                getLocationCache().put(l.getName(), l);
                 
 
             }
@@ -53,5 +53,13 @@ public class LocationCache {
         }
         
     }
+
+    /**
+     * @return the locationCache
+     */
+    public static ConcurrentHashMap<String, Location> getLocationCache() {
+        return locationCache;
+    }
+    
 
 }

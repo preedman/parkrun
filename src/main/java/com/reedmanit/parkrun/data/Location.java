@@ -5,6 +5,8 @@
  */
 package com.reedmanit.parkrun.data;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  *
  * @author paul
@@ -14,6 +16,9 @@ public class Location {
     private String lng;
     private String lat;
     private String name;
+    private String coursePage;
+    private String googleMap;
+    private String url = "https://www.google.com/maps/search/?api=1&query=";
     
     public Location() {
         
@@ -59,6 +64,37 @@ public class Location {
      */
     public void setName(String name) {
         this.name = name;
+        setCoursePage(name);
+        setGoogleMap();
+    }
+
+    /**
+     * @return the coursePage
+     */
+    public String getCoursePage() {
+        return coursePage;
+    }
+
+    /**
+     * @param coursePage the coursePage to set
+     */
+    private void setCoursePage(String name) {
+        this.coursePage = StringUtils.deleteWhitespace(name);
+    }
+
+    /**
+     * @return the googleMap
+     */
+    public String getGoogleMap() {
+        return googleMap;
+    }
+
+    /**
+     * @param googleMap the googleMap to set
+     */
+    private void setGoogleMap() {
+        this.googleMap = url + this.lat + "," + this.lng;
+        
     }
     
 }

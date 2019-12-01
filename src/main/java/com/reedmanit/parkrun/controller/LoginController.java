@@ -51,7 +51,7 @@ public class LoginController implements Serializable {
 
             System.out.println("Valid User");
        //     return "/views/bicycletable.xhtml?faces-redirect=true";
-              return "/welcomePrimeFaces.xhtml?faces-redirect=true";
+              return "/views/parkrunlocations.xhtml?faces-redirect=true";
         } else {
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
                     "Invalid credentials");
