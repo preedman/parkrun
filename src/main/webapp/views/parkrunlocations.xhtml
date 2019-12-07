@@ -6,11 +6,15 @@
                 template="/templates/masterTemplate.xhtml">
     <ui:define name="content">
         <h:form id="bicycleform">
-            <p:dataTable var="parkruns" value="#{parkrunController.parkrunLocations}"  >
+            <p:dataTable var="parkruns" value="#{parkrunController.parkrunLocations}" widgetVar="parkrunTable"
+                                 rows="15" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15" sortOrder="ascending" sortBy="#{parkruns.name}"
+                                 emptyMessage="No parkruns found" filteredValue="#{parkrunController.filteredParkrunLocations}" >
 
-               
 
-                <p:column headerText="Name" sortBy="#{parkruns.name}" filterBy="#{parkruns.name}" >
+
+                <p:column headerText="Name" sortBy="#{parkruns.name}" filterBy="#{parkruns.name}" filterMatchMode="contains" >
                     <f:facet name="header">
                         <h:outputText value="Filter by Name" />
                     </f:facet>
@@ -18,15 +22,17 @@
                 </p:column>
 
                 <p:column headerText="Course" >
-                   
-                          <h:outputText value="#{parkruns.coursePage}" />
+
+
+                    <h:outputLink value="#{parkruns.coursePage}" target="_blank" >Course Page</h:outputLink>
                 </p:column>
 
                 <p:column headerText="Google Map">
-                    <h:outputText value="#{parkruns.googleMap}" />
+                    <h:outputLink value="#{parkruns.googleMap}" target="_blank" >Google Map</h:outputLink>
+
                 </p:column>
-               
-                
+
+
             </p:dataTable>
         </h:form>
     </ui:define>

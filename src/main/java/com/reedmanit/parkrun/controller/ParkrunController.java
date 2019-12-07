@@ -31,6 +31,7 @@ public class ParkrunController {
      * Creates a new instance of ParkrunController
      */
     private List<Location> parkrunLocations;
+    private List<Location> filteredParkrunLocations;
 
     public ParkrunController() {
     }
@@ -53,6 +54,20 @@ public class ParkrunController {
      */
     public List<Location> getParkrunLocations() {
         return parkrunLocations;
+    }
+
+    /**
+     * @return the filteredParkrunLocations
+     */
+    public List<Location> getFilteredParkrunLocations() {
+        return filteredParkrunLocations;
+    }
+
+    /**
+     * @param filteredParkrunLocations the filteredParkrunLocations to set
+     */
+    public void setFilteredParkrunLocations(List<Location> filteredParkrunLocations) {
+        this.filteredParkrunLocations = filteredParkrunLocations;
     }
 
 }

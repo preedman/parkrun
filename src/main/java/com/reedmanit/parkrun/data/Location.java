@@ -19,6 +19,7 @@ public class Location {
     private String coursePage;
     private String googleMap;
     private String url = "https://www.google.com/maps/search/?api=1&query=";
+    private String parkrunURL = "https://www.parkrun.com.au/";
     
     public Location() {
         
@@ -66,6 +67,7 @@ public class Location {
         this.name = name;
         setCoursePage(name);
         setGoogleMap();
+        this.name = StringUtils.removeEndIgnoreCase(this.name, "parkrun");
     }
 
     /**
@@ -79,7 +81,10 @@ public class Location {
      * @param coursePage the coursePage to set
      */
     private void setCoursePage(String name) {
+        
         this.coursePage = StringUtils.deleteWhitespace(name);
+        this.coursePage = StringUtils.removeEndIgnoreCase(this.coursePage, "parkrun");
+        this.coursePage = parkrunURL + this.coursePage;
     }
 
     /**
