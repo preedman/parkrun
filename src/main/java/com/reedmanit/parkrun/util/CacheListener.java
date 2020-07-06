@@ -23,18 +23,22 @@ public class CacheListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext sc = sce.getServletContext();
         LocationCache theCache = null;
+        ParkRunnerCache prCache = null;
         try {
             theCache = new LocationCache();
             FileConnection.getInstance().connectToData();
-            theCache.loadLocationCache(FileConnection.getInstance().getDataLocation());
+            theCache.loadCache(FileConnection.getInstance().getDataLocation());
+            prCache = new ParkRunnerCache();
+            
+            prCache.loadCache(FileConnection.getInstance().getRunnerDataLocation());
             
         } catch (Exception ex) {
             Logger.getLogger(CacheListener.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         sc.setAttribute("cache", theCache);
-  //      sc.setAttribute(string, sc);
-      //  sc.setAttribute("memory", new Memory());
+        sc.setAttribute("prcache", prCache);
+  
     }
 
     @Override

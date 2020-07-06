@@ -3,20 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.reedmanit.parkrun.dao;
+package com.reedmanit.parkrun.util;
+
+import java.io.IOException;
 
 /**
  *
  * @author paul
  */
-public class ParkrunDAO {
+public interface DataCache {
     
-    
-    
-    public ParkrunDAO() {
-        
-    }
-    
-    
+    public void loadCache(String dataLocation) throws IOException;
     
 }

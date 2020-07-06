@@ -7,6 +7,7 @@ package com.reedmanit.parkrun.controller;
 
 import com.reedmanit.parkrun.data.Location;
 import com.reedmanit.parkrun.util.LocationCache;
+import com.reedmanit.parkrun.util.ParkRunnerCache;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,7 @@ public class ParkrunController {
      */
     private List<Location> parkrunLocations;
     private List<Location> filteredParkrunLocations;
+    
 
     public ParkrunController() {
     }
@@ -40,6 +42,7 @@ public class ParkrunController {
     public void init() {
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         LocationCache theCache = (LocationCache) servletContext.getAttribute("cache");
+        
         parkrunLocations = new ArrayList<Location>();
         ConcurrentHashMap<String, Location> Map = LocationCache.getLocationCache();
         for (Map.Entry<String, Location> entry : Map.entrySet()) {
@@ -47,6 +50,7 @@ public class ParkrunController {
             getParkrunLocations().add(l);
            // System.out.println(entry.getKey() + " = " + entry.getValue());
         }
+        
     }
 
     /**

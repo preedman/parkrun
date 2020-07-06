@@ -8,10 +8,12 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.bean.ManagedBean;
 
 import com.reedmanit.parkrun.dao.LoginDAO;
+import com.reedmanit.parkrun.util.ParkRunnerCache;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
+import javax.servlet.ServletContext;
 
 @ManagedBean
 @RequestScoped
@@ -25,20 +27,19 @@ public class LoginController implements Serializable {
     private String username;
     private String password;
     private String newpassword;
+    private ParkRunnerCache prCache;
 
     public LoginController() {
         super();
     }
 
-  //  @PostConstruct
-  //  public void init() {
+    @PostConstruct
+    public void init() {
+        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        prCache = (ParkRunnerCache) servletContext.getAttribute("prcache");
+    }
 
-  //      try {
- //           com.reedmanit.parkrun.util.Connection.getInstance().createDBConnection();
-  //      } catch (SQLException ex) {
-  //          Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-  //      }
-  //  }
+ 
 
     public String validateUser() throws SQLException {
         FacesMessage msg = null;

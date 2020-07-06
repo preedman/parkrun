@@ -17,6 +17,7 @@ public class FileConnection {
 
     private static FileConnection instance = null;
     private String dataLocation;
+    private String runnerDataLocation;
 
     private FileConnection() {
 
@@ -40,11 +41,21 @@ public class FileConnection {
         
         System.out.println("Data Location " + dataLocation);
         
+        runnerDataLocation = (String) envContext.lookup("parkrunnerdata");
+        
+        System.out.println("Park runner data location " + runnerDataLocation);
 
     }
     
     public String getDataLocation() {
         return dataLocation;
+    }
+
+    /**
+     * @return the runnerDataLocation
+     */
+    public String getRunnerDataLocation() {
+        return runnerDataLocation;
     }
 
 }

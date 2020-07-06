@@ -6,23 +6,23 @@
 package com.reedmanit.parkrun.util;
 
 import com.reedmanit.parkrun.data.Location;
+import com.reedmanit.parkrun.data.ParkRunner;
+import static com.reedmanit.parkrun.util.LocationCache.getLocationCache;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
  * @author paul
  */
-public class LocationCache implements DataCache {
-
-    private static ConcurrentHashMap<String, Location> locationCache;
-
-    public LocationCache() throws Exception {
-        locationCache = new ConcurrentHashMap<String, Location>();
-        
+public class ParkRunnerCache implements DataCache {
+    
+    private static ConcurrentHashMap<String, ParkRunner> parkrunnerCache;
+    
+    public ParkRunnerCache() {
+        parkrunnerCache = new ConcurrentHashMap<String, ParkRunner>();
     }
     
     public void loadCache(String dataLocation) throws IOException {
@@ -37,13 +37,14 @@ public class LocationCache implements DataCache {
                 // use comma as separator
                 String[] data = line.split(cvsSplitBy);
                 
-                Location l = new Location();
+                ParkRunner pr = new ParkRunner();
                 
-                l.setLng(data[0]);  // lng is positive
-                l.setLat(data[1]);  // lat is negative
-                l.setName(data[2]);
+                pr.setID(data[0]);
+                pr.setPassword(data[1]);
                 
-                getLocationCache().put(l.getName(), l);
+                getParkrunnerCache().put(pr.getID(), pr);
+                
+                
                 
 
             }
@@ -55,11 +56,9 @@ public class LocationCache implements DataCache {
     }
 
     /**
-     * @return the locationCache
+     * @return the parkrunnerCache
      */
-    public static ConcurrentHashMap<String, Location> getLocationCache() {
-        return locationCache;
+    public static ConcurrentHashMap<String, ParkRunner> getParkrunnerCache() {
+        return parkrunnerCache;
     }
-    
-
 }

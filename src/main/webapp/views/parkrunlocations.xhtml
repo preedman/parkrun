@@ -5,12 +5,20 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/masterTemplate.xhtml">
     <ui:define name="content">
+        <p:panelGrid columns="2" id="summayPanel" layout="grid" >
+            <h:outputText value="Park Run Summary" />
+            <h:outputLink value="https://www.parkrun.com.au/results/athleteeventresultshistory/?athleteNumber=317005" title="Summary"  target="_blank">
+                <h:outputText value="Parkrun Summary" />
+            </h:outputLink>
+        </p:panelGrid>
+        <p:separator />
+   
         <h:form id="bicycleform">
             <p:dataTable var="parkruns" value="#{parkrunController.parkrunLocations}" widgetVar="parkrunTable"
-                                 rows="15" paginator="true"
-                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="5,10,15" sortOrder="ascending" sortBy="#{parkruns.name}"
-                                 emptyMessage="No parkruns found" filteredValue="#{parkrunController.filteredParkrunLocations}" >
+                         rows="15" paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" sortOrder="ascending" sortBy="#{parkruns.name}"
+                         emptyMessage="No parkruns found" filteredValue="#{parkrunController.filteredParkrunLocations}" >
 
 
 
